@@ -5,7 +5,7 @@
         <ion-buttons slot="start">
           <ion-menu-button color="primary"></ion-menu-button>
         </ion-buttons>
-        <ion-title>{{ getPageTitle($route.params.id) }}</ion-title>
+        <ion-title>{{ dataArray.name }}</ion-title>
       </ion-toolbar>
     </ion-header>
 
@@ -13,22 +13,28 @@
       <ion-header collapse="condense">
         <ion-toolbar>
           <ion-title size="large">{{
-            getPageTitle($route.params.id)
+            dataArray.name
           }}</ion-title>
         </ion-toolbar>
       </ion-header>
 
       <div id="container">
-        <strong class="capitalize">{{ getPageTitle($route.params.id) }}</strong>
+        <strong class="capitalize">{{ dataArray.name }}</strong>
         <p>
-          {{ getPageObjTitle($route.params.id) }}
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://ionicframework.com/docs/components"
-            >UI Components</a
-          >
+          {{ dataArray.title }}
         </p>
+      </div>
+      
+      <template v-if="dataArray.items">
+        <div v-for="item of dataArray.items" :key="item.title">
+          <img :src="item.url" :alt="item.title">
+          <p> {{ item.title }} <span> {{item.price}}</span></p>
+        </div>
+      </template>
+
+      <div v-else>
+          <img :src="dataArray.url" :alt="dataArray.title">
+          <p> {{ dataArray.title }} <span> {{dataArray.price}}</span></p>
       </div>
     </ion-content>
   </ion-page>
@@ -46,7 +52,8 @@ import {
   IonToolbar,
 } from "@ionic/vue";
 
-import { entradas, lanches, refeicoes, sobremesas, bebidas, promos } from '../constants/cardapio'
+import '../constants/cardapio'
+import * as data from "../constants/cardapio";
 
 export default defineComponent({
   name: "FolderPage",
@@ -61,43 +68,52 @@ export default defineComponent({
   },
 
   mounted() {
-    this.dataArray =
+    this.getPageObj(this.$route.params.id)
   },
 
   data: () => {
     return {
-      dataArray: []
+      dataArray: {}
     };
   },
 
   methods: {
-    getPageTitle(value: string) {
-      for (let item of this.dataArray) {
-        if (item.name === value) {
-          return item.name;
-        }
+    getPageObj(value: string | string[]) {
+      if (value === 'entradas') {
+        this.dataArray = data.entradas
       }
-    },
 
-    getPageObjTitle(value: string) {
-      for (let item of this.dataArray) {
-        if (item.name === value) {
-          return item.title;
-        }
+      if (value === 'lanches') {
+        this.dataArray = data.lanches
       }
-    },
+
+      if (value === 'refeicoes') {
+        this.dataArray = data.refeicoes
+      }
+
+      if (value === 'sobremesas') {
+        this.dataArray = data.sobremesas
+      }
+
+      if (value === 'bebidas') {
+        this.dataArray = data.bebidas
+      }
+
+      if (value === 'dia') {
+        const date = new Date();
+        const day = date.getDay();
+
+        this.dataArray = data.promos.items[day]
+      }
+    }
   },
 });
 </script>
 
 <style scoped>
 #container {
-  text-align: center;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  display: flex;
+  flex-flow: column;
 }
 
 #container strong {

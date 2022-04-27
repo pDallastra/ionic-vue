@@ -115,13 +115,13 @@ export default defineComponent({
       },
       {
         title: "Prato Entrada",
-        url: "/folder/entrada",
+        url: "/folder/entradas",
         iosIcon: paperPlaneOutline,
         mdIcon: paperPlaneSharp,
       },
       {
-        title: "Prato Refeição",
-        url: "/folder/refeicao",
+        title: "Prato Refeições",
+        url: "/folder/refeicoes",
         iosIcon: heartOutline,
         mdIcon: heartSharp,
       },
@@ -138,7 +138,7 @@ export default defineComponent({
         mdIcon: trashSharp,
       },
       {
-        title: "Prato do Dia",
+        title: "Promo do Dia",
         url: "/folder/dia",
         iosIcon: warningOutline,
         mdIcon: warningSharp,
