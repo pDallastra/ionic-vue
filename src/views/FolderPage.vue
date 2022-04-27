@@ -5,31 +5,51 @@
         <ion-buttons slot="start">
           <ion-menu-button color="primary"></ion-menu-button>
         </ion-buttons>
-        <ion-title>{{ $route.params.id }}</ion-title>
+        <ion-title>{{ getPageTitle($route.params.id) }}</ion-title>
       </ion-toolbar>
     </ion-header>
-    
+
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">{{ $route.params.id }}</ion-title>
+          <ion-title size="large">{{
+            getPageTitle($route.params.id)
+          }}</ion-title>
         </ion-toolbar>
       </ion-header>
-    
+
       <div id="container">
-        <strong class="capitalize">{{ $route.params.id }}</strong>
-        <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+        <strong class="capitalize">{{ getPageTitle($route.params.id) }}</strong>
+        <p>
+          {{ getPageObjTitle($route.params.id) }}
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://ionicframework.com/docs/components"
+            >UI Components</a
+          >
+        </p>
       </div>
     </ion-content>
   </ion-page>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import { defineComponent } from "vue";
+import {
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonMenuButton,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+} from "@ionic/vue";
+
+import { entradas, lanches, refeicoes, sobremesas, bebidas, promos } from '../constants/cardapio'
 
 export default defineComponent({
-  name: 'FolderPage',
+  name: "FolderPage",
   components: {
     IonButtons,
     IonContent,
@@ -37,8 +57,36 @@ export default defineComponent({
     IonMenuButton,
     IonPage,
     IonTitle,
-    IonToolbar
-  }
+    IonToolbar,
+  },
+
+  mounted() {
+    this.dataArray =
+  },
+
+  data: () => {
+    return {
+      dataArray: []
+    };
+  },
+
+  methods: {
+    getPageTitle(value: string) {
+      for (let item of this.dataArray) {
+        if (item.name === value) {
+          return item.name;
+        }
+      }
+    },
+
+    getPageObjTitle(value: string) {
+      for (let item of this.dataArray) {
+        if (item.name === value) {
+          return item.title;
+        }
+      }
+    },
+  },
 });
 </script>
 
