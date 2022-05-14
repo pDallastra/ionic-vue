@@ -134,8 +134,6 @@ export default defineComponent({
       {
         title: "Bebidas",
         url: "/folder/bebidas",
-        iosIcon: trashOutline,
-        mdIcon: trashSharp,
       },
       {
         title: "Promo do Dia",
