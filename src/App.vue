@@ -4,8 +4,8 @@
       <ion-menu content-id="main-content" type="overlay">
         <ion-content>
           <ion-list id="inbox-list">
-            <ion-list-header>Inbox</ion-list-header>
-            <ion-note>hi@ionicframework.com</ion-note>
+            <ion-list-header>Cardápio</ion-list-header>
+            <ion-note>Developed by &copy;Miguel Xavier</ion-note>
 
             <ion-menu-toggle
               auto-hide="false"
@@ -29,23 +29,6 @@
                 <ion-label>{{ p.title }}</ion-label>
               </ion-item>
             </ion-menu-toggle>
-          </ion-list>
-
-          <ion-list id="labels-list">
-            <ion-list-header>Labels</ion-list-header>
-
-            <ion-item
-              v-for="(label, index) in labels"
-              lines="none"
-              :key="index"
-            >
-              <ion-icon
-                slot="start"
-                :ios="bookmarkOutline"
-                :md="bookmarkSharp"
-              ></ion-icon>
-              <ion-label>{{ label }}</ion-label>
-            </ion-item>
           </ion-list>
         </ion-content>
       </ion-menu>
@@ -86,6 +69,10 @@ import {
   trashSharp,
   warningOutline,
   warningSharp,
+  beerOutline,
+  beerSharp,
+  pizzaOutline,
+  pizzaSharp,
 } from "ionicons/icons";
 
 export default defineComponent({
@@ -110,8 +97,8 @@ export default defineComponent({
       {
         title: "Lanches",
         url: "/folder/lanches",
-        iosIcon: mailOutline,
-        mdIcon: mailSharp,
+        iosIcon: pizzaOutline,
+        mdIcon: pizzaSharp,
       },
       {
         title: "Prato Entrada",
@@ -134,6 +121,8 @@ export default defineComponent({
       {
         title: "Bebidas",
         url: "/folder/bebidas",
+        iosIcon: beerOutline,
+        mdIcon: beerSharp,
       },
       {
         title: "Promo do Dia",
@@ -141,14 +130,6 @@ export default defineComponent({
         iosIcon: warningOutline,
         mdIcon: warningSharp,
       },
-    ];
-    const labels = [
-      "Family",
-      "Friends",
-      "Notes",
-      "Work",
-      "Travel",
-      "Reminders",
     ];
 
     const path = window.location.pathname.split("folder/")[1];
@@ -163,7 +144,6 @@ export default defineComponent({
     return {
       selectedIndex,
       appPages,
-      labels,
       archiveOutline,
       archiveSharp,
       bookmarkOutline,
