@@ -71,8 +71,13 @@ import {
   warningSharp,
   beerOutline,
   beerSharp,
+  fastFoodOutline,
+  fastFoodSharp,
   pizzaOutline,
   pizzaSharp,
+  caretForwardCircleOutline,
+  caretForwardCircleSharp,
+
 } from "ionicons/icons";
 
 export default defineComponent({
@@ -97,26 +102,26 @@ export default defineComponent({
       {
         title: "Lanches",
         url: "/folder/lanches",
-        iosIcon: pizzaOutline,
-        mdIcon: pizzaSharp,
+        iosIcon: fastFoodOutline,
+        mdIcon: fastFoodSharp,
       },
       {
         title: "Prato Entrada",
         url: "/folder/entradas",
-        iosIcon: paperPlaneOutline,
-        mdIcon: paperPlaneSharp,
+        iosIcon: pizzaOutline,
+        mdIcon: pizzaSharp,
       },
       {
         title: "Prato Refeições",
         url: "/folder/refeicoes",
-        iosIcon: heartOutline,
-        mdIcon: heartSharp,
+        iosIcon: caretForwardCircleOutline,
+        mdIcon: caretForwardCircleSharp,
       },
       {
         title: "Sobremesas",
         url: "/folder/sobremesas",
-        iosIcon: archiveOutline,
-        mdIcon: archiveSharp,
+        iosIcon: heartOutline,
+        mdIcon: heartSharp,
       },
       {
         title: "Bebidas",
@@ -166,18 +171,18 @@ export default defineComponent({
 
 <style scoped>
 ion-menu ion-content {
-  --background: var(--ion-item-background, var(--ion-background-color, #fff));
+  --background: var(--ion-item-background, var(--ion-background-color, rgb(255, 255, 255)));
 }
 
 ion-menu.md ion-content {
-  --padding-start: 8px;
-  --padding-end: 8px;
+  --padding-start: 20px;
+  --padding-end: 100px;
   --padding-top: 20px;
   --padding-bottom: 20px;
 }
 
 ion-menu.md ion-list {
-  padding: 20px 0;
+  padding: 10px 0;
 }
 
 ion-menu.md ion-note {
@@ -190,7 +195,7 @@ ion-menu.md ion-note {
 }
 
 ion-menu.md ion-list#inbox-list {
-  border-bottom: 1px solid var(--ion-color-step-150, #d7d8da);
+  border-bottom: 1px solid var(--ion-color-step-150, #f10909);
 }
 
 ion-menu.md ion-list#inbox-list ion-list-header {
@@ -205,7 +210,7 @@ ion-menu.md ion-list#labels-list ion-list-header {
 
   margin-bottom: 18px;
 
-  color: #757575;
+  color: #1aa126;
 
   min-height: 26px;
 }
@@ -225,7 +230,7 @@ ion-menu.md ion-item.selected ion-icon {
 }
 
 ion-menu.md ion-item ion-icon {
-  color: #616e7e;
+  color: #ff0202;
 }
 
 ion-menu.md ion-item ion-label {

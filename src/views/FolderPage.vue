@@ -101,11 +101,16 @@ export default defineComponent({
 #container p {
   font-size: 20px;
   line-height: 22px;
-  color: #8c8c8c;
+  color: #070707;
   margin: 0;
 }
 
 #container a {
   text-decoration: none;
+}
+div vdataArray.items{
+  font-size: 20px;
+  align-items: center;
+
 }
 </style>
