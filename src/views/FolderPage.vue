@@ -1,6 +1,14 @@
 <template>
   <ion-page>
     <ion-content :fullscreen="true">
+      <ion-header :translucent="true">
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-menu-button color="primary"></ion-menu-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
       <div id="container">
         <strong class="capitalize">{{ dataArray.name }}</strong>
         <p>
