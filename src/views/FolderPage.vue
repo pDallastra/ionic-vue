@@ -10,17 +10,21 @@
 
       <template v-if="dataArray.items">
         <div v-for="item of dataArray.items" :key="item.title">
-          <img :src="item.url" :alt="item.title" />
           <p>
-            {{ item.title }} <span> {{ item.price }}</span>
+            {{ item.title }}
+            <span v-if="item.price > 0">
+              {{ getCurrencyFormatted(item.price) }}</span
+            >
           </p>
+          <img :src="item.url" :alt="item.title" />
         </div>
       </template>
 
       <div v-else>
         <img :src="dataArray.url" :alt="dataArray.title" />
         <p>
-          {{ dataArray.title }} <span> {{ dataArray.price }}</span>
+          {{ dataArray.title }}
+          <span> {{ getCurrencyFormatted(dataArray.price) }}</span>
         </p>
       </div>
     </ion-content>
@@ -77,29 +81,50 @@ export default defineComponent({
         const date = new Date();
         const day = date.getDay();
 
-        this.dataArray = data.promos.items[day];
+        const promos = data.promos;
+        promos.items = [data.promos.items[day]];
+
+        this.dataArray = promos;
       }
+    },
+    getCurrencyFormatted(number: number) {
+      var formatter = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "BRL",
+      });
+
+      return formatter.format(number);
     },
   },
 });
 </script>
 
 <style scoped>
-#container {
+div {
   display: flex;
   flex-flow: column;
   align-items: center;
-  padding: 2rem;
-}
-
-#container strong {
-  font-size: 28px;
-  line-height: 26px;
   padding: 1rem;
 }
 
-#container p {
+img {
+  height: 300px;
+  width: 400px;
+}
+
+p {
   font-size: 20px;
+  font-family: cursive;
+}
+
+#container strong {
+  font-size: 32px;
+  line-height: 26px;
+  padding: 0.5rem;
+}
+
+#container p {
+  font-size: 24px;
   line-height: 22px;
   color: #070707;
   margin: 0;
@@ -107,10 +132,5 @@ export default defineComponent({
 
 #container a {
   text-decoration: none;
-}
-div vdataArray.items{
-  font-size: 20px;
-  align-items: center;
-
 }
 </style>
